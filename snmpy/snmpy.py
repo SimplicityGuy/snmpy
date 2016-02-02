@@ -58,12 +58,13 @@ class Snmpy(object):
         Load one or more additional MIBs.
         :param modules: modules to load
         '''
-        try:
-            self._mibBuilder.loadModules(*modules)
-        except SmiError, e:
-            if self.PREVIOUS_EXPORT in str(e):
-                continue
-            raise
+        for module in modules:
+            try:
+                self._mibBuilder.loadModules(module)
+            except SmiError, e:
+                if self.PREVIOUS_EXPORT in str(e):
+                    continue
+                raise
 
     def get(self, oid):
         '''

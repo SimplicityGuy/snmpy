@@ -19,7 +19,6 @@ client.add_mib_path(getcwd())
 #       sed -i '10 a ( Unsigned32, ) = mibBuilder.importSymbols("SNMPv2-SMI", "Unsigned32")' PowerNet-MIB.py
 client.load_mibs('PowerNet-MIB')
 
-print client.alive
 print "APC Model Number: %s" % \
       client.get('PowerNet-MIB::rPDU2IdentModelNumber.1')
 print "Outlet 5 status: %s" % \
