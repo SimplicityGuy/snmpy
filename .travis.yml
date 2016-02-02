@@ -1,9 +1,14 @@
 language: python
 python:
-  - "2.7"
-
+  - '2.7'
 install:
   - python setup.py install
-
 script:
   - python setup.py install
+deploy:
+  provider: pypi
+  user: SimplicityGuy
+  password:
+    secure: GihmsmXxb/UXu8pblIXU6/vV7mqtgrFltlouGctbneqo07s3PvTVhI7U1PEReVVzzFfcDTgm+Tqgjq+1Wt6VPfpgTwo2e0YQz0p5fjB6F/hNN5P7OSWUYEoFqx/mynJH2glBLPJ1nGkVMZCp2AxHQA4SlWtjQjxz5OxZ+y9u9K94aIM6BRrKtjF+t1gd06iiCf66JS+eZKzbFmeUVCXIP/unBz965Kf4ZZ3HrxvIZIx/+vYD8yz17qvuCUHk9NnOZw8tAjJoWy/aUlujXaXn4xP4+UfBfZkbv17NvHpQc32MhLbqpmOy8h+Q891lrZE1lmtYhTTvGuhlGbodkMZialaRRMtcquqHBR8XHlRJWDpCj+1i2WR7OoPFEMM93CbJZwerOTeUhTBLqCHiYXHrvs/EhSURgcelwZe0uC7ypp/Zp2IHuFkFcOtNkOQqmsxbndcRuSgriglZ6mSeACwEtOQj2EHCyenxu6hcO7V9KTUOxT64+eMJAZq9QXhodL1LTsNiH/80j1ZQwNBlfFjYNGT3a4E4h2Tn1H9favWEmbT6v1CD+zaHjc/9BhpmpSoV3J9BhKpZzUS2GGmO51pi249v6WncJMlPUTuB1dxsfrQKXTB2M3z6c9ud8fD9Hd9YkSGwP7ebHGslZLKYl4QzdzQjKO9PdNVT+kP2fJCWUTQ=
+  on:
+    tags: true
