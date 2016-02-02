@@ -34,8 +34,5 @@ setup(
     ],
     keywords='snmp monitoring',
     install_requires=['pysnmp'],
-    extras_require={
-        'dev': ['check-manifest'],
-        'test': ['coverage'],
-    },
+    platforms='any',
 )
