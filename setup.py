@@ -1,6 +1,4 @@
-from setuptools import setup
-from codecs import open
-from os import path
+from setuptools import setup, find_packages
 
 setup(
     name='snmpy',
@@ -21,6 +19,7 @@ setup(
         'Programming Language :: Python :: 2.7',
     ],
     keywords='snmp monitoring',
+    packages=find_packages(exclude=['contrib', 'docs', 'test*']),
     install_requires=['pysnmp'],
     platforms='any',
 )

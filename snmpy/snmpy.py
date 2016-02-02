@@ -1,7 +1,7 @@
 import pysnmp.entity.rfc3413.oneliner.cmdgen as cmdgen
+from pysnmp.proto import rfc1902
 from pysnmp.smi import builder, view
 from pysnmp.smi.error import SmiError
-from pysnmp.proto import rfc1902
 
 
 class Snmpy(object):
