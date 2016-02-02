@@ -35,8 +35,8 @@ class Snmpy(object):
         self._transport = cmdgen.UdpTransportTarget((self._host, self._port),
                                                     timeout=self._timeout,
                                                     retries=self._retries)
-        self._public = cmdgen.CommunityData(public, self.VERSION_2_2C)
-        self._private = cmdgen.CommunityData(private, self.VERSION_2_2C)
+        self._public = cmdgen.CommunityData(public, mpModel=self.VERSION_2_2C)
+        self._private = cmdgen.CommunityData(private, mpModel=self.VERSION_2_2C)
 
         self._mibBuilder = builder.MibBuilder()
         self._mibViewController = view.MibViewController(self._mibBuilder)
