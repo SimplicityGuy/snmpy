@@ -11,14 +11,11 @@ with open('snmpy/__init__.py', 'rb') as f:
     version = str(literal_eval(_version_re.search(
         f.read().decode('utf-8')).group(1)))
 
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
-
 setup(
     name='snmpy',
     version=version,
     description='Simple pysnmp wrapper.',
-    long_description=long_description,
+    long_description='The pysnmp library is somewhat tricky to work with. This package makes reading and writing SNMP OIDs much easier.'
     url='https://github.com/SimplicityGuy/snmpy',
     author='Robert Wlodarczyk',
     author_email='robert@simplicityguy.com',
