@@ -15,7 +15,7 @@ setup(
     name='snmpy',
     version=version,
     description='Simple pysnmp wrapper.',
-    long_description='The pysnmp library is somewhat tricky to work with. This package makes reading and writing SNMP OIDs much easier.'
+    long_description='The pysnmp library is somewhat tricky to work with. This package makes reading and writing SNMP OIDs much easier.',
     url='https://github.com/SimplicityGuy/snmpy',
     author='Robert Wlodarczyk',
     author_email='robert@simplicityguy.com',
