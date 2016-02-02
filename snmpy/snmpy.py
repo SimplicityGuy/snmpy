@@ -5,15 +5,15 @@ from pysnmp.proto import rfc1902
 
 
 class Snmpy(object):
-    '''
+    """
     Simple pysnmp wrapper.
-    '''
+    """
     ERROR_MSG = 'SNMP%s of %s on %s failed.'
     PREVIOUS_EXPORT = 'already exported'
     VERSION_2_2C = 1
 
     def __init__(self, host, public, private, port=161, timeout=1, retries=2):
-        '''
+        """
         Create the snmpy object.
         :param host: hostname or IP address of the device to communicate with
         :type host: str
@@ -28,7 +28,7 @@ class Snmpy(object):
         :param retries: number of retries (default 2)
         :type retries: int
         :returns:
-        '''
+        """
         self._host = host
         self._port = port
         self._timeout = timeout
@@ -47,18 +47,18 @@ class Snmpy(object):
                        'HOST-RESOURCES-MIB', 'FIBRE-CHANNEL-FE-MIB')
 
     def add_mib_path(self, *path):
-        '''
+        """
         Add an additional directory to the MIB search path.
         :param path: path to additional MIBs
-        '''
+        """
         mib_path = self._mibBuilder.getMibPath() + path
         self._mibBuilder.setMibPath(*mib_path)
 
     def load_mibs(self, *modules):
-        '''
+        """
         Load one or more additional MIBs.
         :param modules: modules to load
-        '''
+        """
         for module in modules:
             try:
                 self._mibBuilder.loadModules(module)
@@ -68,11 +68,11 @@ class Snmpy(object):
                 raise
 
     def get(self, oid):
-        '''
+        """
         Get a specific value from an OID in the SNMP tree.
         :param oid: OID to get
         :returns: value from the specified OID
-        '''
+        """
         noid = self.__node_id(oid)
         (errorIndication, errorStatus, errorIndex, varBinds) = \
             cmdgen.CommandGenerator().getCmd(
@@ -85,11 +85,11 @@ class Snmpy(object):
         return varBinds[0][1]
 
     def set(self, oid, value):
-        '''
+        """
         Set a specific value to an OID in the SNMP tree.
         :param oid: OID to set
         :param value: value to set
-        '''
+        """
         initial_value = self.get(oid)
         noid = self.__node_id(oid)
         (errorIndication, errorStatus, errorIndex, varBinds) = \
@@ -104,10 +104,10 @@ class Snmpy(object):
         return varBinds[0][1]
 
     def __node_id(self, oid):
-        '''
+        """
         Translate a named OID to the dotted-decimal format.
         :param oid: OID to translate
-        '''
+        """
         ids = oid.split('.')
         symbols = ids[0].split('::')
         ids = tuple([int(x) for x in ids[1:]])
@@ -118,12 +118,12 @@ class Snmpy(object):
 
     @staticmethod
     def __coerce_value(initial_value, new_value):
-        '''
+        """
         Coerce the new_value to the same type as the initial_value.
         :param initial_value: initial value from the device
         :param new_value: new value to set, coerced into the right type
         :return: new value, coreced into the right type
-        '''
+        """
         # Types from RFC-1902
         if isinstance(initial_value, rfc1902.Counter32):
             set_value = rfc1902.Counter32(str(new_value))
