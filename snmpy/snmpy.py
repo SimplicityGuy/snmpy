@@ -1,6 +1,7 @@
 import pysnmp.entity.rfc3413.oneliner.cmdgen as cmdgen
 from pysnmp.smi import builder, view
 from pysnmp.smi.error import SmiError
+from pysnmp.proto import rfc1902
 
 
 class Snmpy(object):
@@ -41,7 +42,7 @@ class Snmpy(object):
         self._mibBuilder = builder.MibBuilder()
         self._mibViewController = view.MibViewController(self._mibBuilder)
 
-        # Preload some commonly used modules.
+        # Pre-load some commonly used modules.
         self.load_mibs('SNMPv2-MIB', 'IF-MIB', 'IP-MIB',
                        'HOST-RESOURCES-MIB', 'FIBRE-CHANNEL-FE-MIB')
 
@@ -50,8 +51,8 @@ class Snmpy(object):
         Add an additional directory to the MIB search path.
         :param path: path to additional MIBs
         '''
-        mibPath = self._mibBuilder.getMibPath() + path
-        self._mibBuilder.setMibPath(*mibPath)
+        mib_path = self._mibBuilder.getMibPath() + path
+        self._mibBuilder.setMibPath(*mib_path)
 
     def load_mibs(self, *modules):
         '''
@@ -90,13 +91,12 @@ class Snmpy(object):
         :param value: value to set
         '''
         initial_value = self.get(oid)
-        set_value = type(initial_value)(str(value))
         noid = self.__node_id(oid)
         (errorIndication, errorStatus, errorIndex, varBinds) = \
             cmdgen.CommandGenerator().setCmd(
                 self._private,
-                self._public,
-                (noid, set_value)
+                self._transport,
+                (noid, self.__coerce_value(initial_value, value))
             )
         if errorIndication:
             raise RuntimeError(self.ERROR_MSG % ('set', oid, self._host))
@@ -115,3 +115,35 @@ class Snmpy(object):
         oid = mibnode.getName() + ids
 
         return oid
+
+    @staticmethod
+    def __coerce_value(initial_value, new_value):
+        '''
+        Coerce the new_value to the same type as the initial_value.
+        :param initial_value: initial value from the device
+        :param new_value: new value to set, coerced into the right type
+        :return: new value, coreced into the right type
+        '''
+        # Types from RFC-1902
+        if isinstance(initial_value, rfc1902.Counter32):
+            set_value = rfc1902.Counter32(str(new_value))
+        elif isinstance(initial_value, rfc1902.Counter64):
+            set_value = rfc1902.Counter64(str(new_value))
+        elif isinstance(initial_value, rfc1902.Gauge32):
+            set_value = rfc1902.Gauge32(str(new_value))
+        elif isinstance(initial_value, rfc1902.Integer):
+            set_value = rfc1902.Integer(str(new_value))
+        elif isinstance(initial_value, rfc1902.Integer32):
+            set_value = rfc1902.Integer32(str(new_value))
+        elif isinstance(initial_value, rfc1902.IpAddress):
+            set_value = rfc1902.IpAddress(str(new_value))
+        elif isinstance(initial_value, rfc1902.OctetString):
+            set_value = rfc1902.OctetString(str(new_value))
+        elif isinstance(initial_value, rfc1902.TimeTicks):
+            set_value = rfc1902.TimeTicks(str(new_value))
+        elif isinstance(initial_value, rfc1902.Unsigned32):
+            set_value = rfc1902.Unsigned32(str(new_value))
+        else:
+            raise RuntimeError("Unknown type %s" % type(initial_value))
+
+        return set_value
