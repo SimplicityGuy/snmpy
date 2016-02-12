@@ -1,15 +1,15 @@
 language: python
 python:
-  - '2.7'
+- '2.7'
 install:
-  - python setup.py install
+- python setup.py install
 script:
-  - python setup.py install
+- python setup.py install
 deploy:
   provider: pypi
   user: SimplicityGuy
   password:
-    secure: GihmsmXxb/UXu8pblIXU6/vV7mqtgrFltlouGctbneqo07s3PvTVhI7U1PEReVVzzFfcDTgm+Tqgjq+1Wt6VPfpgTwo2e0YQz0p5fjB6F/hNN5P7OSWUYEoFqx/mynJH2glBLPJ1nGkVMZCp2AxHQA4SlWtjQjxz5OxZ+y9u9K94aIM6BRrKtjF+t1gd06iiCf66JS+eZKzbFmeUVCXIP/unBz965Kf4ZZ3HrxvIZIx/+vYD8yz17qvuCUHk9NnOZw8tAjJoWy/aUlujXaXn4xP4+UfBfZkbv17NvHpQc32MhLbqpmOy8h+Q891lrZE1lmtYhTTvGuhlGbodkMZialaRRMtcquqHBR8XHlRJWDpCj+1i2WR7OoPFEMM93CbJZwerOTeUhTBLqCHiYXHrvs/EhSURgcelwZe0uC7ypp/Zp2IHuFkFcOtNkOQqmsxbndcRuSgriglZ6mSeACwEtOQj2EHCyenxu6hcO7V9KTUOxT64+eMJAZq9QXhodL1LTsNiH/80j1ZQwNBlfFjYNGT3a4E4h2Tn1H9favWEmbT6v1CD+zaHjc/9BhpmpSoV3J9BhKpZzUS2GGmO51pi249v6WncJMlPUTuB1dxsfrQKXTB2M3z6c9ud8fD9Hd9YkSGwP7ebHGslZLKYl4QzdzQjKO9PdNVT+kP2fJCWUTQ=
+    secure: Fw92GXFg7DyJ7bYYagqz2u+HSbsWjMDFWxvKrAYcvh+ndd4uJlr1KT+xOYg/4v7Bz7pZV6AWJV0Mpuc57dYVAYK5ylfw6ITCFO8SmGK8XTelOD0LtLql5d1TssFpxDfLKf+C3hLKojx7gOnUtt0X4gpg2jkKaAvhnzsc9b677QTimjRJunPJG7gLzC6tKbT5gxy6wOe06rDxO9nWDYdTOXt0FjXcGsAzHFIglavM0MhowrG4kuHdRZQlxfwqp5yYVRu+xBP6a0XVl0zCYuvr6kxRdVEVgfHaTGdt5+q3kV7CFZgMnj0esSA829OdeNhIWbCW32ErZBo/Rk612FjNZKjg5hY7qZEf/uUHn6tqLKNEneVDzbYSYaks0UhbAWIR4RRi2MFeM00Hzfmy/qtv67aIAMBP1oQjCjnwkxQibWG5/p81sIVXW0yV00KaMX5SomfoGJN7NaaafUVihjv2u5tSbPRgypcmb+/svKkn0Dm1gUOEmurY/FIwkGzw7cba9UeJZuR4Ra1VhwDkRAw+yNsQRZSdql40flnaZOL8NhwRmadH7vGG4g4qbSokMpK07RlUt9/iO8I/xHWt/qAMYjyY4WDtoe9iyrCGuXoS/F6m/aQT3I4oDCzp3HI09Vt7fwvhODE/kjfGQydkaYsoQI5aFCWsAs1EIOuv8LJRGks=
   on:
     tags: true
     branch: master
