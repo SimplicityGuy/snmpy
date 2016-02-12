@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='snmpy',
-    version='0.1.0.3',
+    version='0.1.0.4',
     description='Simple pysnmp wrapper.',
     long_description='The pysnmp library is somewhat tricky to work with. This package makes reading and writing SNMP OIDs much easier.',
     url='https://github.com/SimplicityGuy/snmpy',
