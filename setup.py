@@ -28,6 +28,6 @@ setup(
     ],
     keywords='snmp monitoring',
     packages=find_packages(exclude=['contrib', 'docs', 'test*']),
-    setup_requires=['flake8'],
+    setup_requires=['setuptools-lint', 'flake8', 'sphinx'],
     install_requires=['pysnmp'],
 )

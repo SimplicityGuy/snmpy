@@ -7,9 +7,11 @@ python:
   - "3.5-dev"
   - "nightly"
 install:
-  - python setup.py install
+  - pip install --upgrade pip
+  - pip install -r build-requirements.txt
+  - pip install -r requirements.txt
 script:
-  - python setup.py install
+  - make all
 deploy:
   provider: pypi
   user: SimplicityGuy
