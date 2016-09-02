@@ -1,10 +1,14 @@
+#!/usr/bin/env python
+
+"""Setup configuration."""
+
 from setuptools import setup, find_packages
 
 setup(
     name='snmpy',
     version='0.1.0.4',
     description='Simple pysnmp wrapper.',
-    long_description='The pysnmp library is somewhat tricky to work with. This package makes reading and writing SNMP OIDs much easier.',
+    long_description='The pysnmp library is somewhat tricky to work with. This package makes reading and writing SNMP OIDs much easier.',  # noqa
     url='https://github.com/SimplicityGuy/snmpy',
     author='Robert Wlodarczyk',
     author_email='robert@simplicityguy.com',
@@ -24,6 +28,6 @@ setup(
     ],
     keywords='snmp monitoring',
     packages=find_packages(exclude=['contrib', 'docs', 'test*']),
+    setup_requires=['flake8'],
     install_requires=['pysnmp'],
-    platforms='any',
 )
