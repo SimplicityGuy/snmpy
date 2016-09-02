@@ -73,7 +73,7 @@ class Snmpy(object):
         for module in modules:
             try:
                 self._mib_builder.loadModules(module)
-            except SmiError, error:
+            except SmiError as error:
                 if self.PREVIOUS_EXPORT in str(error):
                     continue
                 raise
